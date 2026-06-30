@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap');
+
+:root {
+  --color-bg: #02000a;
+  --color-text: #ffffff;
+  --color-accent-1: #ff007f;
+  --color-accent-2: #7000ff;
+  --color-accent-3: #00f0ff;
+  
+  --font-main: 'Outfit', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  /* Prevent accidental text selection globally while dragging the canvas */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable text selection for actual readable content */
+p, h1, h2, h3, h4, span, li {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-2);
+  border-radius: 4px;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: auto; 
+}
+
+.content-layer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  pointer-events: none; 
+}
+
+.glass-panel, a, button {
+  pointer-events: auto;
+}
+
+.glass-panel {
+  background: rgba(10, 0, 30, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(112, 0, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border: 1px solid rgba(0, 240, 255, 0.5);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 10%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-mono);
+}
+
+/* Cube 3D Info Cards */
+.cube-content {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--color-accent-3);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  width: 150px;
+  pointer-events: none; /* Let clicks pass through to the 3D cube */
+  box-shadow: 0 0 15px var(--color-accent-3);
+  /* Explicitly disable text selection on the cube annotations */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.cube-content h3, .cube-content p {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.cube-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: var(--color-accent-1);
+}
+
+.cube-content p {
+  font-size: 1rem;
+  font-family: var(--font-main);
+}
+
+/* Skill Tags */
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background: rgba(112, 0, 255, 0.2);
+  border: 1px solid var(--color-accent-2);
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  color: var(--color-accent-3);
+  box-shadow: 0 0 10px rgba(112, 0, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 0, 127, 0.3);
+  border-color: var(--color-accent-1);
+  color: #fff;
+  box-shadow: 0 0 15px var(--color-accent-1);
+  transform: translateY(-3px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 3rem 5%;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+  
+  .glass-panel {
+    padding: 1.5rem !important;
+  }
+  
+  .cube-content {
+    width: 120px;
+    padding: 10px;
+  }
+  
+  .cube-content h3 {
+    font-size: 1.2rem;
+  }
+  
+  .cube-content p {
+    font-size: 0.9rem;
+  }
+}
+
